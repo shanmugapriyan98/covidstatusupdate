@@ -10,43 +10,6 @@ import { StatusForm } from './StatusForm';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent{
   title = 'covidstatusupdate';
-  public statuses: Status[] = [];
-  public statusesList: Status[] = [];
-  statusForm!: FormGroup;
-
-  constructor(private status: StatusService, private formBuilder: FormBuilder){};
-
-  ngOnInit(): void {
-      this.getWeeklyStatus();
-      this.statusForm = this.formBuilder.group({
-        state: [null, [Validators.required]],
-        startDate: [null, Validators.required],
-        endDate: [null, Validators.required]
-      });
-  }
-
-  submit() {
-    if (!this.statusForm.valid) {
-      return;
-    }
-    this.status.getStatusBetweenDates(this.statusForm.value as StatusForm).subscribe(
-      {
-        next: (response:Status[]) => (this.statusesList = response),
-        error: (error: HttpErrorResponse) => (alert(error.message)),
-        complete: () => console.info('complete')
-      });
-  }
-
-
-  public getWeeklyStatus(){
-    this.status.getLastWeekStatus().subscribe(
-      {
-        next: (response:Status[]) => (this.statuses = response),
-        error: (error: HttpErrorResponse) => (alert(error.message)),
-        complete: () => console.info('complete')
-      });
-  }
-
 }

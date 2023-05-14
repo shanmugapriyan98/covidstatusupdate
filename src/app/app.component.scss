@@ -11,3 +11,11 @@
 .form-field{
     display: block
 }
+
+table, mat-toolbar {
+    width: 100%;
+}
+
+.filler{
+    flex: 1 1 auto;
+}

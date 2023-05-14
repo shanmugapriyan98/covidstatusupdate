@@ -5,16 +5,26 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { StatusService } from './status.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatButtonModule} from '@angular/material/button';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
 
 import 'hammerjs';
+import { WeeklystatusComponent } from './weeklystatus/weeklystatus.component';
+import { StatusbwdatesComponent } from './statusbwdates/statusbwdates.component';
+import { AppRoutingModule } from './app-routing.module';
+import { MatToolbarModule } from '@angular/material/toolbar'; 
+
+
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    WeeklystatusComponent,
+    StatusbwdatesComponent
   ],
   imports: [
     BrowserModule, 
@@ -23,7 +33,10 @@ import 'hammerjs';
     ReactiveFormsModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatTableModule,
+    AppRoutingModule,
+    MatToolbarModule
   ],
   providers: [StatusService],
   bootstrap: [AppComponent]
