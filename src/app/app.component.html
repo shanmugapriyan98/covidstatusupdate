@@ -19,3 +19,48 @@
     </tbody>
   </table>
 </div>
+
+
+<div class="example-container">
+  <div class="form-container">
+    <form [formGroup]="statusForm" (submit)="submit()">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> State
+        </mat-label>
+        <input matInput formControlName="state" required>
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> Start Date
+        </mat-label>
+        <input matInput formControlName="startDate" type="date">
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> End Date
+        </mat-label>
+        <input matInput formControlName="endDate" type="date">
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Search</button>
+    </form>
+  </div>
+</div>
+
+<div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Positive Cases</th>
+        <th>Negative Cases</th>
+        <th>State</th>
+      </tr>
+    </thead>
+    <tbody  *ngFor='let status of statusesList'>
+      <tr>
+        <td>{{status.date}}</td>
+        <td>{{status.positive}}</td>
+        <td>{{status.negative}}</td>
+        <td>{{status.state}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
