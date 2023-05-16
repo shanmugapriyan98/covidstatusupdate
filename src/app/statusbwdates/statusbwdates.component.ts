@@ -5,6 +5,7 @@ import { StatusService } from '../status.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { StatusForm } from '../StatusForm';
 import { Subscription } from 'rxjs';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-statusbwdates',
@@ -17,10 +18,13 @@ export class StatusbwdatesComponent {
   public isClicked : boolean = false;
   public statusForm!: FormGroup;
   public statusSubscription: Subscription = new Subscription;
+  public datasource :any;
 
   displayedColumns =["date", "positive", "negative", "state"];
 
-  constructor(private status: StatusService, private formBuilder: FormBuilder){};
+  constructor(private status: StatusService, private formBuilder: FormBuilder){
+    this.datasource = new MatTableDataSource();
+  };
 
   ngOnInit(): void {  
       this.statusForm = this.formBuilder.group({
@@ -37,6 +41,7 @@ export class StatusbwdatesComponent {
         next: (response:Status[]) => {
           this.statusesList = response;
           this.isClicked= true;
+          this.datasource.data = this.statusesList;
         },
         error: (error: HttpErrorResponse) => (alert(error.message)),
         complete: () => console.info('complete')
@@ -45,5 +50,9 @@ export class StatusbwdatesComponent {
 
   ngOnDestroy(){
     this.statusSubscription.unsubscribe();
+  }
+
+  applyFilter(filterValue:string){
+    this.datasource.filter = filterValue.trim().toUpperCase();
   }
 }

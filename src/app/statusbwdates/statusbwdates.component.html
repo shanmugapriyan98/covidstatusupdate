@@ -25,7 +25,12 @@
 
 <br>
 <br>
-<table mat-table [dataSource]="statusesList" class="mat-elevation-z8" *ngIf="isClicked && statusesList.length >0">
+<mat-form-field *ngIf="isClicked && datasource.data.length >0">
+    <input #filterval matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Filter by state">
+</mat-form-field>
+<br>
+<br>
+<table mat-table [dataSource]="datasource" class="mat-elevation-z8" *ngIf="isClicked && datasource.data.length >0">
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Date</th>
       <td mat-cell *matCellDef="let element"> {{element.date}} </td>
@@ -48,6 +53,6 @@
 <br>
 <br>
 
-<mat-card *ngIf="isClicked && statusesList?.length == 0">
+<mat-card class="statusNotFound" *ngIf="isClicked && datasource.data?.length == 0">
     <mat-card-content>Status not found</mat-card-content>
 </mat-card>
