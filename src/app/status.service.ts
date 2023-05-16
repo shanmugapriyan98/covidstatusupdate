@@ -16,7 +16,6 @@ export class StatusService {
   }
 
   getStatusBetweenDates(statusForm:StatusForm):Observable<Status[]>{
-    console.log(statusForm);
     return this.httpClient.post<Status[]>('http://localhost:8080/find', statusForm);
   }
 

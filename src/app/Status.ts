@@ -3,6 +3,6 @@ export interface Status{
     date : string;
     positive: string;
     negative: string;
-    posIncrease: string;
-    negIncrease: string;
+    positiveIncrease: string;
+    negativeIncrease: string;
 }

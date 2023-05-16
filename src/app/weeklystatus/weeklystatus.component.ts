@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Status } from '../Status';
 import { StatusService } from '../status.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-weeklystatus',
@@ -9,8 +10,11 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./weeklystatus.component.scss']
 })
 export class WeeklystatusComponent {
-
+  
+  public isClicked : boolean = false;
   public statuses: Status[] = [];
+  public statusSubscription: Subscription = new Subscription;
+  
   displayedColumns =["date", "positive", "negative", "state"];
   
   constructor(private statusService: StatusService){}
@@ -22,10 +26,17 @@ export class WeeklystatusComponent {
   public getWeeklyStatus(){
     this.statusService.getLastWeekStatus().subscribe(
       {
-        next: (response:Status[]) => (this.statuses = response),
+        next: (response:Status[]) => {
+          this.statuses = response;
+          this.isClicked= true;
+        },
         error: (error: HttpErrorResponse) => (alert(error.message)),
         complete: () => console.info('complete')
       });
+  }
+
+  ngOnDestroy(){
+    this.statusSubscription.unsubscribe();
   }
 
 }

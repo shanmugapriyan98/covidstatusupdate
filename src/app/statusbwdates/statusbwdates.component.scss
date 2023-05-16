@@ -1,0 +1,19 @@
+.form-class{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    list-style: none;
+    margin: 0; 
+}
+
+.search-btn{
+    float: right;
+}
+
+#posIncrease{
+    color: red;
+}
+
+#negIncrease{
+    color: green;
+}

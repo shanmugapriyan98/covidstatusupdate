@@ -1,14 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { Status } from './Status';
-import { StatusService } from './status.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { StatusForm } from './StatusForm';
+import { Component } from '@angular/core';
+import { MAT_DATE_FORMATS } from '@angular/material/core';
+   
+export const MY_DATE_FORMATS = {
+    parse: {
+      dateInput: 'MM/DD/YYYY',
+    },
+    display: {
+      dateInput: 'MM/DD/YYYY',
+      monthYearLabel: 'MMMM YYYY',
+      dateA11yLabel: 'LL',
+      monthYearA11yLabel: 'MMMM YYYY'
+    },
+};
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  providers: [
+    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }
+  ]
 })
 export class AppComponent{
   title = 'covidstatusupdate';

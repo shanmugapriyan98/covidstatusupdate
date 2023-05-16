@@ -16,6 +16,10 @@ import { WeeklystatusComponent } from './weeklystatus/weeklystatus.component';
 import { StatusbwdatesComponent } from './statusbwdates/statusbwdates.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MatToolbarModule } from '@angular/material/toolbar'; 
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MomentDateModule } from '@angular/material-moment-adapter';
+import {MatCardModule} from '@angular/material/card';
 
 
 
@@ -36,7 +40,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatInputModule,
     MatTableModule,
     AppRoutingModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MomentDateModule,
+    MatCardModule
   ],
   providers: [StatusService],
   bootstrap: [AppComponent]
